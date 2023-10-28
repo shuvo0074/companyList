@@ -1,7 +1,7 @@
 import React from 'react';
 import { Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
 import { SHADOW_STYLE, colors, dimensions, fontSizes, fontWeights, styleGuide } from '../styles/globalStyles';
-import useHomecompanyController from '../view-controllers/useAuthController';
+import useHomecompanyController from '../view-controllers/useHomecompanyController';
 
 
 const CompanyItem = ({ company }) => {

@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, FlatList } from 'react-native';
 import { styles } from './styles';
-import useHomecompanyController from '../../view-controllers/useHomecompanyController copy';
+import useHomecompanyController from '../../view-controllers/useHomecompanyController';
 import { CompanyItem, EmptyList } from '../../components';
 import { styleGuide } from '../../styles/globalStyles';
 
