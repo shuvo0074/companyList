@@ -31,7 +31,10 @@ const useAuthViewModel = () => {
           }
         })
         .catch(e => console.log(e))
-      dispatch(signIn({}))
+      dispatch(signIn({ ...loginData, token: res.data.token }))
+    },
+    loginFromData: data => {
+      dispatch(signIn({ ...loginData, ...data }))
     },
     logout: (id) => {
       dispatch(signOut())

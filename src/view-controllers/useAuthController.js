@@ -2,10 +2,10 @@ import useAuthViewModel from '../view-models/useAuthViewModel';
 
 
 const useAuthController = () => {
-  const { setEmail, setPassword, loginWithAPI, logout, user, isLoggedIn, loginData } = useAuthViewModel();
+  const { setEmail, setPassword, loginWithAPI, loginFromData, logout, user, isLoggedIn, loginData } = useAuthViewModel();
 
   return {
-    setEmail, setPassword, loginWithAPI, logout, user, isLoggedIn, loginData
+    setEmail, setPassword, loginWithAPI, loginFromData, logout, user, isLoggedIn, loginData
   };
 };
 
