@@ -1,26 +1,28 @@
-import React, {useEffect, useState} from 'react';
-import {View, Text, FlatList, Image, Pressable} from 'react-native';
-import {styles} from './styles';
-import {NativeStackScreenProps} from '@react-navigation/native-stack';
-import axios from 'axios';
-import {getCompaniesUrl} from '../../../config';
+import React from 'react';
+import { View, FlatList } from 'react-native';
+import { styles } from './styles';
+import useHomecompanyController from '../../view-controllers/useHomecompanyController copy';
+import { CompanyItem, EmptyList } from '../../components';
+import { styleGuide } from '../../styles/globalStyles';
 
-export const CompaniesListScreen = ({
-  navigation,
-}: NativeStackScreenProps<any>) => {
+export const CompaniesListScreen = () => {
+  const { companyList } = useHomecompanyController()
   return (
     <View style={styles.container}>
-      <Text
-        style={
-          styles.text
-        }>{`To get the list of companies, you need to do a GET request to the endpoint ${getCompaniesUrl}`}</Text>
-      <Text style={styles.text}>
-        Once you have the list of companies, you need to display them.
-      </Text>
-      <Text style={styles.text}>
-        Each item in the list should be a Pressable that navigates to the
-        CompanyDetails screen
-      </Text>
+      <View style={styles.addressListView}>
+        <FlatList
+          keyExtractor={(item, index) => index.toString()}
+          data={companyList}
+          contentContainerStyle={{
+            paddingBottom: styleGuide.padding
+          }}
+          renderItem={({ item }) =>
+            <CompanyItem
+              company={item}
+            />}
+          ListEmptyComponent={() => <EmptyList />}
+        />
+      </View>
     </View>
   );
 };

@@ -1,4 +1,5 @@
-import {StyleSheet} from 'react-native';
+import { StyleSheet } from 'react-native';
+import { styleGuide } from '../../styles/globalStyles';
 
 export const styles = StyleSheet.create({
   container: {
@@ -7,5 +8,8 @@ export const styles = StyleSheet.create({
   },
   text: {
     margin: 10,
+  },
+  addressListView: {
+    marginVertical: styleGuide.padding,
   },
 });
