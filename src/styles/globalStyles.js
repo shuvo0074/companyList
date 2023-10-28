@@ -51,9 +51,9 @@ export const fontWeights = {
 
 export const styleGuide = {
     radius: 8,
-    padding: 14,
+    padding: 12,
     titleTextSize: fontSizes.fs16,
-    titleTextWeight: fontWeights.fw400
+    titleTextWeight: fontWeights.fw600
 }
 
 export const DIVIDER_STYLE = {
