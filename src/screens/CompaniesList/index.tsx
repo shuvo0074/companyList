@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { View, FlatList } from 'react-native';
 import { styles } from './styles';
 import useHomecompanyController from '../../view-controllers/useHomecompanyController';
@@ -6,7 +6,10 @@ import { CompanyItem, EmptyList } from '../../components';
 import { styleGuide } from '../../styles/globalStyles';
 
 export const CompaniesListScreen = () => {
-  const { companyList } = useHomecompanyController()
+  const { companyList, fetchcompany } = useHomecompanyController()
+  useEffect(() => {
+    fetchcompany();
+  }, []);
   return (
     <View style={styles.container}>
       <View style={styles.addressListView}>
