@@ -32,7 +32,7 @@ export const companySlice = createSlice({
       state.companyList = action.payload;
     },
     updateCurrentCompany: (state, action) => {
-      state.location = action.payload
+      state.currentCompany = action.payload
     }
   },
 });
