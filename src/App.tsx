@@ -6,7 +6,10 @@ import { CompaniesListScreen } from './screens/CompaniesList';
 import { CompanyDetailsScreen } from './screens/CompanyDetails';
 import { Provider } from 'react-redux';
 import store from './store';
-import { navigationRef } from './services/NavigationService';
+import { navigate, navigationRef } from './services/NavigationService';
+import { Image, StyleSheet, TouchableOpacity, View } from 'react-native';
+import { ASSETS } from './assets';
+import { styleGuide } from './styles/globalStyles';
 
 const Stack = createNativeStackNavigator();
 
@@ -32,7 +35,21 @@ export const App = () => {
           <Stack.Screen
             name="CompaniesList"
             component={CompaniesListScreen}
-            options={{ title: 'Companies' }}
+            options={{
+              title: 'Companies',
+              headerRight: _ =>
+                <TouchableOpacity
+                  style={styles.btnContainer}
+                  onPress={_ => navigate('SignIn')}
+                >
+                  <Image
+                    source={ASSETS.logout}
+                    style={styles.logoutIc}
+                    resizeMode='contain'
+                  />
+                </TouchableOpacity>,
+              headerLeft: _ => <View />
+            }}
           />
           <Stack.Screen
             name="CompanyDetails"
@@ -44,3 +61,14 @@ export const App = () => {
     </Provider>
   );
 };
+
+
+export const styles = StyleSheet.create({
+  logoutIc: {
+    height: 20,
+    width: 20,
+  },
+  btnContainer: {
+    padding: styleGuide.padding
+  }
+});

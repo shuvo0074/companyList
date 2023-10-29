@@ -1,4 +1,5 @@
 import {StyleSheet} from 'react-native';
+import { colors, styleGuide } from '../../styles/globalStyles';
 
 export const styles = StyleSheet.create({
   container: {
@@ -6,6 +7,9 @@ export const styles = StyleSheet.create({
     padding: 24,
   },
   text: {
-    marginVertical: 10,
+    marginVertical: styleGuide.padding,
+    borderBottomWidth: 0.5,
+    borderBottomColor: colors.light,
+    paddingVertical: styleGuide.padding,
   },
 });
