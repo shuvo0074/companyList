@@ -36,7 +36,7 @@ const useAuthViewModel = () => {
     loginFromData: data => {
       dispatch(signIn({ ...loginData, ...data }))
     },
-    logout: (id) => {
+    logout: () => {
       dispatch(signOut())
     },
   };

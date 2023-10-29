@@ -1,5 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { email, password } from '../../config';
+import AsyncStorage from '@react-native-community/async-storage';
+import { STORAGE_ITEMS } from '../constants/storageItems';
+import { navigate } from '../services/NavigationService';
 
 const INITIAL_USER = {
   id: -1
@@ -27,6 +30,8 @@ export const authSlice = createSlice({
     signOut: (state) => {
       state.user = INITIAL_USER
       state.isLoggedIn = false
+      AsyncStorage.removeItem(STORAGE_ITEMS.TOKEN)
+      navigate('SIgnIn')
     },
     updateLoginData: (state, action) => {
       state.loginData = { ...state.loginData, ...action.payload }
