@@ -1,23 +1,16 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { View, Button, TextInput, Animated, Keyboard } from 'react-native';
+import { View, Animated, Keyboard } from 'react-native';
 import { styles } from './styles';
 import useAuthController from '../../view-controllers/useAuthController';
 import AsyncStorage from '@react-native-community/async-storage';
 import { STORAGE_ITEMS } from '../../constants/storageItems';
 import { navigate } from '../../services/NavigationService';
 import { ASSETS } from '../../assets';
+import LoginFormWithMemo from '../../components/LoginForm';
 
 export const SignInScreen = () => {
   const logoDimension = useRef(new Animated.Value(200)).current;
   const [kbOpen, setKbOpen] = useState(false)
-  const emailInputRef = useRef<any>(null)
-
-  useEffect(() => {
-    setTimeout(() => {
-      if (emailInputRef.current)
-        emailInputRef.current.focus()
-    }, 1500)
-  }, [])
 
   useEffect(() => {
     const showKBlistener = Keyboard.addListener('keyboardDidHide', () => setKbOpen(false));
@@ -43,7 +36,7 @@ export const SignInScreen = () => {
         duration: 500
       }).start();
   }, [kbOpen])
-  const { setEmail, setPassword, loginWithAPI, loginFromData, loginData, isLoggedIn } = useAuthController()
+  const { loginWithAPI, loginFromData, isLoggedIn } = useAuthController()
   useEffect(() => {
     AsyncStorage.getItem(STORAGE_ITEMS.TOKEN)
       .then(token => {
@@ -60,9 +53,9 @@ export const SignInScreen = () => {
         width: logoDimension,
         height: logoDimension
       }} source={ASSETS.logo} resizeMode="contain" />
-      <TextInput ref={emailInputRef} placeholder="email" value={loginData.email} onChangeText={setEmail} style={styles.text} />
-      <TextInput placeholder="password" value={loginData.password} onChangeText={setPassword} secureTextEntry style={styles.text} />
-      <Button onPress={loginWithAPI} title="Sign In" />
+      <LoginFormWithMemo
+        onSubmit={loginWithAPI}
+      />
     </View>
   );
 };
