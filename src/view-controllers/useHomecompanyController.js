@@ -3,13 +3,14 @@ import usecompanyViewModel from '../view-models/useCompanyViewModel';
 
 
 const useHomecompanyController = () => {
-  const { companyList, currentCompany, removecompanyList, fetchcompany, fetchCurrentCompany, } = usecompanyViewModel();
+  const { companyList, currentCompany, removecompany, fetchcompany, fetchCurrentCompany, } = usecompanyViewModel();
 
   return {
     currentCompany,
     companyList,
     fetchCurrentCompany,
-    fetchcompany
+    fetchcompany,
+    removecompany
   };
 };
 

@@ -9,11 +9,15 @@ import useHomecompanyController from '../../view-controllers/useHomecompanyContr
 export const CompanyDetailsScreen = ({
   route: { params },
 }: NativeStackScreenProps<any>) => {
-  const { fetchCurrentCompany } = useHomecompanyController()
+  const { fetchCurrentCompany, removecompany } = useHomecompanyController()
   const { currentCompany } = useCompanyViewModel()
   useEffect(() => {
     if (params)
       fetchCurrentCompany(params.id)
+
+    return () => {
+      removecompany()
+    }
   }, [params])
   return (
     <View style={styles.container}>

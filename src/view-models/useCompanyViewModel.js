@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { companyAction } from '../store/companySlice';
+import { INITIAL_COMPANY, companyAction } from '../store/companySlice';
 import axios from 'axios';
 import { getCompaniesUrl, getCompanyDocument, graphqlEndpoint } from '../../config';
 import request, { gql } from 'graphql-request';
@@ -41,7 +41,7 @@ const useCompanyViewModel = () => {
           navigate('CompaniesList')
         })
     },
-    removecompanyList: _ => dispatch(setcompanyList([]))
+    removecompany: _ => dispatch(updateCurrentCompany(INITIAL_COMPANY))
   };
 };
 
