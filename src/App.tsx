@@ -11,9 +11,18 @@ import { navigationRef } from './services/NavigationService';
 const Stack = createNativeStackNavigator();
 
 export const App = () => {
+  const linking = {
+    prefixes: ['seedrsdemo://'],
+    config: {
+      screens: {
+        CompaniesList: { path: 'companies' },
+        CompanyDetails: { path: 'company/:id' },
+      },
+    }
+  };
   return (
     <Provider store={store}>
-      <NavigationContainer ref={navigationRef}>
+      <NavigationContainer linking={linking} ref={navigationRef}>
         <Stack.Navigator initialRouteName="SignIn">
           <Stack.Screen
             name="SignIn"
