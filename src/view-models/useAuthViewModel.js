@@ -28,10 +28,10 @@ const useAuthViewModel = () => {
           if (res.status === 200) {
             AsyncStorage.setItem(STORAGE_ITEMS.TOKEN, res.data.token)
             navigate('CompaniesList')
+            dispatch(signIn({ ...loginData, token: res.data.token }))
           }
         })
         .catch(e => console.log(e))
-      dispatch(signIn({ ...loginData, token: res.data.token }))
     },
     loginFromData: data => {
       dispatch(signIn({ ...loginData, ...data }))
