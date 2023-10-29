@@ -10,6 +10,8 @@ import { navigate, navigationRef } from './services/NavigationService';
 import { Image, StyleSheet, TouchableOpacity, View } from 'react-native';
 import { ASSETS } from './assets';
 import { styleGuide } from './styles/globalStyles';
+import AsyncStorage from '@react-native-community/async-storage';
+import { STORAGE_ITEMS } from './constants/storageItems';
 
 const Stack = createNativeStackNavigator();
 
@@ -40,7 +42,10 @@ export const App = () => {
               headerRight: _ =>
                 <TouchableOpacity
                   style={styles.btnContainer}
-                  onPress={_ => navigate('SignIn')}
+                  onPress={_ => {
+                    navigate('SignIn')
+                    AsyncStorage.removeItem(STORAGE_ITEMS.TOKEN)
+                  }}
                 >
                   <Image
                     source={ASSETS.logout}
