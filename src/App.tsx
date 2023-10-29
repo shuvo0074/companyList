@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { SignInScreen } from './screens/SignIn';
@@ -13,6 +13,14 @@ import { styleGuide } from './styles/globalStyles';
 import AsyncStorage from '@react-native-community/async-storage';
 import { STORAGE_ITEMS } from './constants/storageItems';
 
+interface Props { // interface to declare "ReactNode" type to children props
+  children?: ReactNode
+}
+
+export const ReduxProvider = ({ children, ...props }: Props) => (
+  <Provider store={store}>{children}</Provider>
+)
+
 const Stack = createNativeStackNavigator();
 
 export const App = () => {
@@ -26,7 +34,7 @@ export const App = () => {
     }
   };
   return (
-    <Provider store={store}>
+    <ReduxProvider>
       <NavigationContainer linking={linking} ref={navigationRef}>
         <Stack.Navigator initialRouteName="SignIn">
           <Stack.Screen
@@ -63,7 +71,7 @@ export const App = () => {
           />
         </Stack.Navigator>
       </NavigationContainer>
-    </Provider>
+    </ReduxProvider>
   );
 };
 
