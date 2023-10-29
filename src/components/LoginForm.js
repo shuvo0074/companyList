@@ -9,10 +9,13 @@ const LoginForm = ({ onSubmit }) => {
 
   const emailInputRef = useRef(null)
   useEffect(() => {
-    setTimeout(() => {
+    const inputTimeout = setTimeout(() => {
       if (emailInputRef.current)
         emailInputRef.current.focus()
     }, 1500)
+    return () => {
+      clearTimeout(inputTimeout)
+    }
   }, [])
 
 
