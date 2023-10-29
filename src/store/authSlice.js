@@ -31,7 +31,7 @@ export const authSlice = createSlice({
       state.user = INITIAL_USER
       state.isLoggedIn = false
       AsyncStorage.removeItem(STORAGE_ITEMS.TOKEN)
-      navigate('SIgnIn')
+      navigate('SignIn')
     },
     updateLoginData: (state, action) => {
       state.loginData = { ...state.loginData, ...action.payload }
