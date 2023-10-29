@@ -8,7 +8,7 @@ import { navigate } from '../../services/NavigationService';
 import { ASSETS } from '../../assets';
 
 export const SignInScreen = () => {
-  const logoDimension = useRef(new Animated.Value(140)).current;
+  const logoDimension = useRef(new Animated.Value(200)).current;
   const [kbOpen, setKbOpen] = useState(false)
   const emailInputRef = useRef<any>(null)
 
