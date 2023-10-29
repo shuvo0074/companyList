@@ -54,5 +54,6 @@ const styles = StyleSheet.create({
     fontSize: fontSizes.fs14
   }
 });
+const CompanyItemWithMemo = React.memo(CompanyItem)
 
-export default CompanyItem;
+export default CompanyItemWithMemo;
