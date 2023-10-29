@@ -32,10 +32,14 @@ const useCompanyViewModel = () => {
     fetchCurrentCompany: (id) => {
       request(graphqlEndpoint, gql`${getCompanyDocument}`, { id }, { 'x-api-key': token })
         .then(res => {
-          dispatch(updateCurrentCompany(res.getCompany))
-          navigate('CompanyDetails')
+          if (res.getCompany)
+            dispatch(updateCurrentCompany(res.getCompany))
+          else
+            navigate('CompaniesList')
         })
-        .catch(e => console.log("gq", e.response, id, token))
+        .catch(e => {
+          navigate('CompaniesList')
+        })
     },
     removecompanyList: _ => dispatch(setcompanyList([]))
   };

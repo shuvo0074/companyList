@@ -1,15 +1,20 @@
 /* eslint-disable quotes */
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { View, Text, Image } from 'react-native';
 import { styles } from './styles';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import request from 'graphql-request';
-import { getCompanyDocument, graphqlEndpoint } from '../../../config';
-import { useSelector } from 'react-redux';
 import useCompanyViewModel from '../../view-models/useCompanyViewModel';
+import useHomecompanyController from '../../view-controllers/useHomecompanyController';
 
-export const CompanyDetailsScreen = () => {
+export const CompanyDetailsScreen = ({
+  route: { params },
+}: NativeStackScreenProps<any>) => {
+  const { fetchCurrentCompany } = useHomecompanyController()
   const { currentCompany } = useCompanyViewModel()
+  useEffect(() => {
+    if (params)
+      fetchCurrentCompany(params.id)
+  }, [params])
   return (
     <View style={styles.container}>
       <Image

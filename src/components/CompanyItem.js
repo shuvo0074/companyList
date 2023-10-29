@@ -1,15 +1,16 @@
 import React from 'react';
 import { Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
 import { SHADOW_STYLE, colors, dimensions, fontSizes, fontWeights, styleGuide } from '../styles/globalStyles';
-import useHomecompanyController from '../view-controllers/useHomecompanyController';
+import { navigate } from '../services/NavigationService';
 
 
 const CompanyItem = ({ company }) => {
-  const { fetchCurrentCompany } = useHomecompanyController()
   return (
     <TouchableOpacity
       style={styles.container}
-      onPress={() => fetchCurrentCompany(company.id)}
+      onPress={() => {
+        navigate('CompanyDetails', { id: company.id })
+      }}
     >
       <Image
         source={{ uri: company.logoUrl }}
